@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/colors.dart';
+import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/icon_and_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
@@ -16,7 +17,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController _pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  double _height = Dimensions.pageSliderBannerImageHeight;
   @override
   void initState() {
     super.initState();
@@ -36,8 +37,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Slider
         Container(
-          height: 320,
+          height: Dimensions.pageSliderBannerHeight,
           child: PageView.builder(
             controller: _pageController,
             itemCount: 5,
@@ -46,6 +48,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             },
           ),
         ),
+        // Dots Indicator
         DotsIndicator(
           dotsCount: 5,
           position: _currentPageValue,
@@ -57,12 +60,32 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
         ),
+        // Popular text
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: 'Popular'),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: '.',
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(width: Dimensions.width10),
+              SmallText(text: 'Pairing'),
+            ],
+          ),
+        )
       ],
     );
   }
 
   Widget _buildPageItem(int index) {
-    Matrix4 matrix4 = new Matrix4.identity();
+    Matrix4 matrix4 = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
       var currTrans = _height * (1 - currScale) / 2;
@@ -91,11 +114,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix4,
       child: Stack(children: [
         Container(
-          height: 220,
+          height: Dimensions.pageSliderBannerImageHeight,
           margin: const EdgeInsets.only(left: 5, right: 5),
           decoration: BoxDecoration(
             color: const Color(0xFF69c5df),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(Dimensions.radius30),
             image: const DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage("assets/image/food0.png"),
@@ -105,11 +128,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 120,
-            margin: const EdgeInsets.only(left: 30, right: 30, bottom: 15),
+            height: Dimensions.pageSliderBannerTextHeight,
+            margin: EdgeInsets.only(
+                left: Dimensions.width30,
+                right: Dimensions.width30,
+                bottom: Dimensions.height30),
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
                 boxShadow: const [
                   BoxShadow(
                     color: Color(0xFFe8e8e8),
@@ -126,12 +152,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   )
                 ]),
             child: Container(
-              padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+              padding: EdgeInsets.only(
+                  top: Dimensions.height15, left: 15, right: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(text: "Chinese Slides"),
-                  const SizedBox(height: 15),
+                  SizedBox(height: Dimensions.height10),
                   Row(
                     children: [
                       Wrap(
@@ -150,8 +177,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       SmallText(text: '1287 Comments'),
                     ],
                   ),
-                  const SizedBox(height: 15),
+                  SizedBox(height: Dimensions.height20),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconAndText(
                           icon: Icons.circle_sharp,
