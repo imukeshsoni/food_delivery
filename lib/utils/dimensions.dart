@@ -13,6 +13,8 @@ class Dimensions {
   static final height20 = screenHeight / 42.2;
   static final height30 = screenHeight / 28.13;
   static final height45 = screenHeight / 18.75;
+  static final height120 = screenHeight / 7.03;
+  static final height100 = screenHeight / 8.44;
 
   // Dynamic width for margin and padding
   static final width10 = screenHeight / 84.4;
@@ -20,9 +22,11 @@ class Dimensions {
   static final width20 = screenHeight / 42.2;
   static final width30 = screenHeight / 28.13;
   static final width45 = screenHeight / 18.75;
+  static final width120 = screenHeight / 7.03;
 
   // dynamic font sizes
   static final font20 = screenHeight / 42.2;
+  static final font26 = screenHeight / 32.46;
 
   // dynamic radius
   static final radius15 = screenHeight / 56.27;
@@ -31,4 +35,8 @@ class Dimensions {
 
   // dynamic iconSizes
   static final iconSize24 = screenHeight / 35.17;
+  static final iconSize16 = screenHeight / 52.75;
+
+  // Food details image size
+  static final foodDetailImageSize = screenHeight / 2.41;
 }
