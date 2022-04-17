@@ -25,6 +25,7 @@ class Dimensions {
   static final width120 = screenHeight / 7.03;
 
   // dynamic font sizes
+  static final font16 = screenHeight / 52.75;
   static final font20 = screenHeight / 42.2;
   static final font26 = screenHeight / 32.46;
 
