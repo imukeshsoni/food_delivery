@@ -1,3 +1,4 @@
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get_connect.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -6,9 +7,7 @@ class ApiService extends GetConnect implements GetxService {
   final String appBaseUrl;
 
   late Map<String, String> _mainHeaders;
-  ApiService({
-    required this.appBaseUrl,
-  }) {
+  ApiService({required this.appBaseUrl, token = AppConstants.token}) {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
     _mainHeaders = {
